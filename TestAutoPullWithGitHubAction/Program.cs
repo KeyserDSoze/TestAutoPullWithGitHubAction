@@ -8,6 +8,7 @@ public static class Program
         var x = args.ToDictionary(x => x.Split('=')[0], x => x.Split('=')[1]);
         var path = x["path"];
         var newFile = $"{path}/TestAutoPullWithGitHubAction/newFile.txt";
+
         var fileInfo = new FileInfo(newFile);
         if (fileInfo.Exists)
             fileInfo.Delete();
