@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - newFile.txt
+      - TestAutoPullWithGitHubAction/newFile.txt
 jobs:
   publish:
     name: build, pack & publish
