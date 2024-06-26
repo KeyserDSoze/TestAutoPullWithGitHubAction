@@ -30,8 +30,8 @@ jobs:
         run: |
             cd repos
             git config --global alessandro.rapiti44@gmail.com"    
-            git clone https://KeyserDSoze:${{ secrets.GITHUB_TOKEN }}@TestAutoPullWithGitHubAction.git
+            git clone https://KeyserDSoze:${{ secrets.TOKEN }}@TestAutoPullWithGitHubAction.git
             cd ..
-            cd TestAutoPullWithGitHubAction/bin/Release/net8.0/TestAutoPullWithGitHubAction.exe path=../../../../../repos/ v=1.2.3 t=${{ secrets.GITHUB_TOKEN }}
+            cd TestAutoPullWithGitHubAction/bin/Release/net8.0/TestAutoPullWithGitHubAction.exe path=../../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
             
       
