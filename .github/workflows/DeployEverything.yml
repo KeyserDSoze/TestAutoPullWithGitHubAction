@@ -8,7 +8,7 @@ on:
 jobs:
   publish:
     name: build, pack & publish
-    runs-on: ubuntu-latest
+    runs-on: windowws-latest
     environment: Test
     
     steps:
@@ -38,6 +38,6 @@ jobs:
             git remote add origin https://github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             git remote set-url origin https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             ls
-            dotnet TestAutoPullWithGitHubAction.dll path=../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
+            TestAutoPullWithGitHubAction.exe path=../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
             
       
