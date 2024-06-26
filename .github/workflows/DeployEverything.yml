@@ -28,11 +28,12 @@ jobs:
 
       - name: Commit and Push changes
         run: |
-            mkdir repos
+            mkdir -p repos
             cd repos
             git config --global alessandro.rapiti44@gmail.com"    
             git clone https://KeyserDSoze:${{ secrets.TOKEN }}@TestAutoPullWithGitHubAction.git
             cd ..
-            cd TestAutoPullWithGitHubAction/bin/Release/net8.0/TestAutoPullWithGitHubAction.exe path=../../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
+            cd TestAutoPullWithGitHubAction/bin/Release/net8.0/
+            TestAutoPullWithGitHubAction.exe path=../../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
             
       
