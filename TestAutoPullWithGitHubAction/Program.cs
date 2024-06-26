@@ -11,7 +11,10 @@ public static class Program
         var fileInfo = new FileInfo(newFile);
         if (fileInfo.Exists)
             fileInfo.Delete();
-        fileInfo.CreateText().Write(Guid.NewGuid().ToString());
+        using (var stream = fileInfo.CreateText())
+        {
+            stream.Write(Guid.NewGuid().ToString());
+        }
         new Composer().CommitAndPushAsync(path, x["v"], x["t"]).ConfigureAwait(false).GetAwaiter().GetResult();
     }
 }
