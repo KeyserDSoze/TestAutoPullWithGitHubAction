@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - TestAutoPullWithGitHubAction/every.txt
+      - TestAutoPullWithGitHubAction/Every.txt
 jobs:
   publish:
     name: build, pack & publish
