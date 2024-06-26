@@ -28,7 +28,12 @@ jobs:
 
       - name: Commit and Push changes
         run: |
+            git config --global user.email "alessandro.rapiti44@gmail.com"    
             cd TestAutoPullWithGitHubAction/bin/Release/net8.0/
-            ./TestAutoPullWithGitHubAction.exe path=../../../../ v=1.2.3 t=${{ secrets.TOKEN }}
+            git remote remove origin
+            git remote add origin https://github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
+            git remote set-url origin https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
+            ls
+            ./TestAutoPullWithGitHubAction.exe path=../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
             
       
