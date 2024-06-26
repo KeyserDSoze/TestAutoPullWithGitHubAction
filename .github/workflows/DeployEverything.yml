@@ -28,7 +28,7 @@ jobs:
 
       - name: Commit and Push changes
         run: |
-            mkdir -p repos
+            mkdir repos
             cd repos
             git config --global user.email "alessandro.rapiti44@gmail.com"    
             git clone https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
@@ -38,6 +38,6 @@ jobs:
             git remote add origin https://github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             git remote set-url origin https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             ls
-            TestAutoPullWithGitHubAction.exe path=../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
+            ./TestAutoPullWithGitHubAction.exe path=../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
             
       
