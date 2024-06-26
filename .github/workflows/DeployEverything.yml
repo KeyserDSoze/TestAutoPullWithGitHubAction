@@ -38,6 +38,6 @@ jobs:
             git remote add origin https://github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             git remote set-url origin https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             ls
-            TestAutoPullWithGitHubAction.exe path=../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
+            TestAutoPullWithGitHubAction path=../../../../repos/ v=1.2.3 t=${{ secrets.TOKEN }}
             
       
