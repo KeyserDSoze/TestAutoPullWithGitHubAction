@@ -30,7 +30,7 @@ jobs:
         run: |
             mkdir -p repos
             cd repos
-            git config --global "alessandro.rapiti44@gmail.com"    
+            git config --global user.email "alessandro.rapiti44@gmail.com"    
             git clone https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             cd ..
             cd TestAutoPullWithGitHubAction/bin/Release/net8.0/
