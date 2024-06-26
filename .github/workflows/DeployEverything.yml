@@ -28,6 +28,7 @@ jobs:
 
       - name: Commit and Push changes
         run: |
+            mkdir repos
             cd repos
             git config --global alessandro.rapiti44@gmail.com"    
             git clone https://KeyserDSoze:${{ secrets.TOKEN }}@TestAutoPullWithGitHubAction.git
