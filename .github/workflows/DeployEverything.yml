@@ -8,7 +8,7 @@ on:
 jobs:
   publish:
     name: build, pack & publish
-    runs-on: windowws-latest
+    runs-on: windows-latest
     environment: Test
     
     steps:
