@@ -3,10 +3,32 @@ on:
   push:
     branches:
       - master
-    paths:
-      - TestAutoPullWithGitHubAction/Every.txt
+    
 jobs:
-  publish:
+  check-commit-message:
+    runs-on: ubuntu-latest
+    outputs:
+      is-valid-commit: ${{ steps.check-commit-message.outputs.is-valid-commit }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Get the commit message
+      id: get-commit-message
+      run: echo "::set-output name=message::$(git log -1 --pretty=format:'%s')"
+
+    - name: Validate commit message
+      id: check-commit-message
+      run: |
+        if [[ "${{ steps.get-commit-message.outputs.message }}" =~ [A-Za-z]: ]]; then
+          echo "::set-output name=is-valid-commit::true"
+        else
+          echo "::set-output name=is-valid-commit::false"
+        fi
+
+  conditional-job:
+    needs: check-commit-message
+    if: ${{ needs.check-commit-message.outputs.is-valid-commit == 'true' }}
     name: build, pack & publish
     runs-on: windows-latest
     environment: Test
