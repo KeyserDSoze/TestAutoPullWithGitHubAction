@@ -1,4 +1,4 @@
-name: Infrastructure.InMemory.Nuget
+name: Deploy Everything
 on:
   push:
     branches:
