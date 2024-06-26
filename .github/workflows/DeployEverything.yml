@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-         token: ${{ secrets.GITHUB_TOKEN }}
+         token: ${{ secrets.TOKEN }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
@@ -33,9 +33,9 @@ jobs:
             git config --global user.email "alessandro.rapiti44@gmail.com"    
             cd TestAutoPullWithGitHubAction/bin/Release/net8.0/
             git remote remove origin
-            git remote add origin https://KeyserDSoze:${{ secrets.GITHUB_TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
-            git remote set-url origin https://KeyserDSoze:${{ secrets.GITHUB_TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
+            git remote add origin https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
+            git remote set-url origin https://KeyserDSoze:${{ secrets.TOKEN }}@github.com/KeyserDSoze/TestAutoPullWithGitHubAction.git
             ls
-            ./TestAutoPullWithGitHubAction.exe path=../../../../ v=1.2.3 t=${{ secrets.GITHUB_TOKEN }}
+            ./TestAutoPullWithGitHubAction.exe path=../../../../ v=1.2.3 t=${{ secrets.TOKEN }}
             
       
