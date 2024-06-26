@@ -1,0 +1,37 @@
+name: Infrastructure.InMemory.Nuget
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - TestAutoPullWithGitHubAction/every.txt
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    environment: Test
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0'  # Specify the .NET version
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c Release
+
+      - name: Commit and Push changes
+        run: |
+            cd repos
+            git config --global alessandro.rapiti44@gmail.com"    
+            git clone https://KeyserDSoze:${{ secrets.GITHUB_TOKEN }}@TestAutoPullWithGitHubAction.git
+            cd ..
+            cd TestAutoPullWithGitHubAction/bin/Release/net8.0/TestAutoPullWithGitHubAction.exe path=../../../../../repos/ v=1.2.3 t=${{ secrets.GITHUB_TOKEN }}
+            
+      

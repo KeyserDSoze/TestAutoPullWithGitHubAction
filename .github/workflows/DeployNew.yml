@@ -1,0 +1,17 @@
+name: New Event
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - newFile.txt
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    environment: Test
+    
+    steps:
+      - name: Go ahead
+        run: |
+            git config --global alessandro.rapiti44@gmail.com"
