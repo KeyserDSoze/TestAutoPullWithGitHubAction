@@ -5,30 +5,8 @@ on:
       - master
     
 jobs:
-  commit:
-    runs-on: ubuntu-latest
-    outputs:
-      is-valid-commit: ${{ steps.check-commit-message.outputs.is-valid-commit }}
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    
-    - name: Get the commit message
-      id: get-commit-message
-      run: echo "message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
-
-    - name: Validate commit message
-      id: check-commit-message
-      run: |
-        if [[ $message =~ "goownv\sPackage=[0-4]{1}\sVersioning=(Patch|Major|Minor|Specific|ReleaseCandidate)\sIsAutomatic=(true|false)\sMinutesToWait=[0-9]{1}\sAddingNumberToCurrentVersion=[0-9]{1}\sSpecificVersion=(null|[0-9A-Za-z\.]+)\sIsDebug=(true|false)" ]]; then
-          echo "isvalidcommit=true" >> $GITHUB_OUTPUT
-        else
-          echo "isvalidcommit=false">> $GITHUB_OUTPUT
-        fi
-
-  conditional-job:
-    needs: commit
-    if: ${{ needs.commit.outputs.isvalidcommit }} == true
+  committer:
+    if: ${{ startsWith(github.event.commits[0].message, 'goownv Package') }}
     name: build, pack & publish
     runs-on: windows-latest
     environment: Test
