@@ -28,7 +28,7 @@ jobs:
 
   conditional-job:
     needs: commit
-    if: ${{ jobs.commit.outputs.isvalidcommit }} == "true"
+    if: ${{ needs.commit.outputs.isvalidcommit }} == "true"
     name: build, pack & publish
     runs-on: windows-latest
     environment: Test
