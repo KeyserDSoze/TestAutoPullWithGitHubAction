@@ -5,7 +5,16 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        var x = args.ToDictionary(x => x.Split('=')[0], x => x.Split('=')[1]);
+        var x = args.ToDictionary(x => x.Split('=')[0], x =>
+        {
+            var c = x.Split('=');
+            if (c.Length > 1)
+                return c[1];
+            else
+                return null;
+        });
+        foreach (var kvp in x)
+            Console.WriteLine($"{kvp.Key}={kvp.Value}");
         var path = x["path"];
         var newFile = $"{path}/TestAutoPullWithGitHubAction/newFile.txt";
 
