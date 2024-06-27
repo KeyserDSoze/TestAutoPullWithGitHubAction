@@ -15,20 +15,20 @@ jobs:
     
     - name: Get the commit message
       id: get-commit-message
-      run: echo "::set-output name=message::$(git log -1 --pretty=format:'%s')"
+      run: echo "message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
 
     - name: Validate commit message
       id: check-commit-message
       run: |
-        if [[ "${{ steps.get-commit-message.outputs.message }}" =~ goownv\sPackage=[0-4]{1}\sVersioning=(Patch|Major|Minor|Specific|ReleaseCandidate)\sIsAutomatic=(true|false)\sMinutesToWait=[0-9]{1}\sAddingNumberToCurrentVersion=[0-9]{1}\sSpecificVersion=(null|[0-9A-Za-z\.]+)\sIsDebug=(true|false) ]]; then
-          echo "::set-output name=is-valid-commit::true"
+        if [[ "${{ env.message }}" =~ goownv\sPackage=[0-4]{1}\sVersioning=(Patch|Major|Minor|Specific|ReleaseCandidate)\sIsAutomatic=(true|false)\sMinutesToWait=[0-9]{1}\sAddingNumberToCurrentVersion=[0-9]{1}\sSpecificVersion=(null|[0-9A-Za-z\.]+)\sIsDebug=(true|false): ]]; then
+          echo "is-valid-commit=true" >> $GITHUB_ENV
         else
-          echo "::set-output name=is-valid-commit::false"
+          echo "is-valid-commit=false">> $GITHUB_ENV
         fi
 
   conditional-job:
     needs: check-commit-message
-    if: ${{ needs.check-commit-message.outputs.is-valid-commit == 'true' }}
+    if: ${{ env.is-valid-commit == 'true' }}
     name: build, pack & publish
     runs-on: windows-latest
     environment: Test
